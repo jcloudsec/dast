@@ -1,0 +1,145 @@
+DAST Scan: Common Web Vulnerabilities Documentation
+Overview
+
+Dynamic Application Security Testing (DAST) is a black-box testing technique used to detect security vulnerabilities in web applications while they are running. The purpose of this document is to provide a checklist of common vulnerabilities that should be monitored during a DAST scan. This documentation follows OWASP Top 10 and additional critical issues.
+Table of Contents
+
+    Injection Attacks
+        SQL Injection (SQLi)
+        Command Injection
+    Cross-Site Scripting (XSS)
+        Reflected XSS
+        Stored XSS
+    Cross-Site Request Forgery (CSRF)
+    Security Misconfigurations
+    Insecure Deserialization
+    Sensitive Data Exposure
+    Broken Authentication and Session Management
+    Broken Access Control
+    Insufficient Logging and Monitoring
+    Server-Side Request Forgery (SSRF)
+    Additional Checks
+
+    Open Redirects
+    Directory Traversal
+    HTTP Method Tampering
+
+1. Injection Attacks
+1.1 SQL Injection (SQLi)
+
+    Description: Occurs when untrusted data is sent to an interpreter as part of a SQL query. Attackers can execute arbitrary SQL commands.
+    Checks:
+        Unsanitized input fields.
+        Blind SQL Injection.
+        Error-based SQL Injection.
+
+1.2 Command Injection
+
+    Description: Allows attackers to execute arbitrary commands on the host OS.
+    Checks:
+        User-supplied input to shell commands.
+        Detection of unexpected system command executions.
+
+2. Cross-Site Scripting (XSS)
+2.1 Reflected XSS
+
+    Description: Input from the user is returned immediately in the response without proper validation or escaping.
+    Checks:
+        User input reflected in web pages without proper encoding.
+        JavaScript execution through user inputs.
+
+2.2 Stored XSS
+
+    Description: Malicious script is stored on the server (e.g., in a database) and executed when retrieved by other users.
+    Checks:
+        Forms that accept user input and store data.
+        Malicious scripts stored in database or user profiles.
+
+3. Cross-Site Request Forgery (CSRF)
+
+    Description: Forces an authenticated user to perform unwanted actions on a web application.
+    Checks:
+        Lack of CSRF tokens in forms.
+        Absence of anti-CSRF mechanisms in sensitive actions (e.g., password changes).
+
+4. Security Misconfigurations
+
+    Description: Issues caused by improper server configurations (e.g., default settings, outdated software, unnecessary features enabled).
+    Checks:
+        Default credentials (e.g., admin/admin).
+        HTTP security headers missing (e.g., Content-Security-Policy, X-Frame-Options).
+        Exposure of stack traces or error messages.
+
+5. Insecure Deserialization
+
+    Description: Attacker can manipulate serialized objects to execute arbitrary code.
+    Checks:
+        Untrusted data being deserialized without proper validation.
+        Misconfigured object handling systems.
+
+6. Sensitive Data Exposure
+
+    Description: Improper protection of sensitive data (e.g., passwords, credit card numbers).
+    Checks:
+        Data transmitted over HTTP instead of HTTPS.
+        Unencrypted storage of sensitive data.
+        Leaked API keys or tokens.
+
+7. Broken Authentication and Session Management
+
+    Description: Weak session management allows attackers to hijack sessions or bypass authentication mechanisms.
+    Checks:
+        Session ID exposed in URL.
+        Weak password policies.
+        Lack of multi-factor authentication (MFA).
+
+8. Broken Access Control
+
+    Description: Insufficient access control measures allow attackers to gain unauthorized access to sensitive resources.
+    Checks:
+        Users accessing pages or data they shouldn’t have permission to access.
+        Forced browsing of unauthenticated endpoints.
+        Role-based access control issues.
+
+9. Insufficient Logging and Monitoring
+
+    Description: Applications that do not properly log and monitor security events may fail to detect malicious activities.
+    Checks:
+        Missing or weak logging mechanisms.
+        Incomplete or inaccurate log files.
+        Failure to log critical events like login attempts and data access.
+
+10. Server-Side Request Forgery (SSRF)
+
+    Description: Exploits server functionality to access or manipulate internal systems.
+    Checks:
+        User-supplied URLs without validation.
+        Requests sent by the server to internal or external resources.
+
+11. Additional Checks
+11.1 Open Redirects
+
+    Description: Redirects users to unintended destinations due to insufficient validation of URL parameters.
+    Checks:
+        URL redirection based on user inputs.
+        Unvalidated redirect targets.
+
+11.2 Directory Traversal
+
+    Description: Attackers manipulate file paths to access restricted directories or files.
+    Checks:
+        Input that allows navigating outside the web root (e.g., ../../).
+        File inclusion vulnerabilities.
+
+11.3 HTTP Method Tampering
+
+    Description: Attackers use inappropriate HTTP methods (e.g., DELETE, PUT) to perform unauthorized actions.
+    Checks:
+        Improperly configured HTTP methods on sensitive endpoints.
+        Lack of HTTP method restrictions.
+
+References
+
+    OWASP Top 10 Security Risks: OWASP
+    Common DAST Tools: OWASP ZAP, Burp Suite
+    Industry Best Practices: NIST, ISO
