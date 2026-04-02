@@ -1,4 +1,4 @@
-trigger:
+"trigger:
 - main
 
 pool:
@@ -82,4 +82,4 @@ stages:
 
         - script: |
             terraform -chdir=$(TF_WORKING_DIR) apply -auto-approve $(Pipeline.Workspace)/tfplan/tfplan
-          displayName: Terraform Apply
+          displayName: Terraform Apply  "
